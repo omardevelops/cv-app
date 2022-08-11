@@ -1,18 +1,38 @@
 import React from 'react';
+import generateTemplate from './TemplateGenerator';
 
 class General extends React.Component {
   // constructor(props) {
   //   super(props);
+
   // }
 
   render() {
-    const { info } = this.props;
+    const { generalInfo } = this.props;
+    // Get array of generalInfo keys
+    const infoKeys = Object.keys(generalInfo);
+    const template = generateTemplate(infoKeys);
     return (
       <fieldset className="general">
         <legend>Personal Information</legend>
 
         <div>
-          <label htmlFor="firstname">
+          {infoKeys.map((key) => {
+            const dom = {
+              type: 'text',
+              id: key,
+            };
+            if (key === 'email') {
+              dom.type = key;
+            }
+            return (
+              <label htmlFor={dom.id}>
+                <p>{template[key]}</p>
+                <input type={dom.type} id={dom.id} />
+              </label>
+            );
+          })}
+          {/* <label htmlFor="firstname">
             <p>First Name</p>
             <input type="text" id="firstname" />
           </label>
@@ -23,7 +43,7 @@ class General extends React.Component {
           <label htmlFor="email">
             <p>Email</p>
             <input type="email" id="email" />
-          </label>
+          </label> */}
         </div>
       </fieldset>
     );

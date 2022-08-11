@@ -26,7 +26,7 @@ class App extends React.Component {
 
         <div className="main">
           <form onSubmit={(e) => e.preventDefault()}>
-            <General info={general} />
+            <General generalInfo={general} />
           </form>
         </div>
       </div>
