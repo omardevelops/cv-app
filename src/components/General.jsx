@@ -6,10 +6,26 @@ class General extends React.Component {
   // }
 
   render() {
+    const { info } = this.props;
     return (
-      <div className="General">
-        <h1>Hello world!</h1>
-      </div>
+      <fieldset className="general">
+        <legend>Personal Information</legend>
+
+        <div>
+          <label htmlFor="firstname">
+            <p>First Name</p>
+            <input type="text" id="firstname" />
+          </label>
+          <label htmlFor="lastname">
+            <p>Last Name</p>
+            <input type="text" id="lastname" />
+          </label>
+          <label htmlFor="email">
+            <p>Email</p>
+            <input type="email" id="email" />
+          </label>
+        </div>
+      </fieldset>
     );
   }
 }
