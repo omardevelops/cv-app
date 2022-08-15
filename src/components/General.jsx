@@ -8,7 +8,7 @@ class General extends React.Component {
   // }
 
   render() {
-    const { generalInfo } = this.props;
+    const { generalInfo, handleChange } = this.props;
     // Get array of generalInfo keys
     const infoKeys = Object.keys(generalInfo);
     const template = generateTemplate(infoKeys);
@@ -18,32 +18,33 @@ class General extends React.Component {
 
         <div>
           {infoKeys.map((key) => {
-            const dom = {
-              type: 'text',
-              id: key,
-            };
-            if (key === 'email') {
-              dom.type = key;
+            console.log('test');
+            let inputElement;
+            if (template[key].type === 'textarea') {
+              inputElement = (
+                <textarea
+                  id={key}
+                  rows="4"
+                  onChange={(e) => handleChange(e, key)}
+                />
+              );
+            } else {
+              inputElement = (
+                <input
+                  type={template[key].type}
+                  id={key}
+                  value={generalInfo[key]}
+                  onChange={(e) => handleChange(e, key)}
+                />
+              );
             }
             return (
-              <label htmlFor={dom.id}>
-                <p>{template[key]}</p>
-                <input type={dom.type} id={dom.id} />
+              <label key={key} htmlFor={key}>
+                <p>{template[key].label}</p>
+                {inputElement}
               </label>
             );
           })}
-          {/* <label htmlFor="firstname">
-            <p>First Name</p>
-            <input type="text" id="firstname" />
-          </label>
-          <label htmlFor="lastname">
-            <p>Last Name</p>
-            <input type="text" id="lastname" />
-          </label>
-          <label htmlFor="email">
-            <p>Email</p>
-            <input type="email" id="email" />
-          </label> */}
         </div>
       </fieldset>
     );

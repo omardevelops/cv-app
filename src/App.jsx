@@ -12,8 +12,27 @@ class App extends React.Component {
         firstName: '',
         lastName: '',
         email: '',
+        phone: '',
+        summary: '',
       },
     };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e, key) {
+    console.log(this.state);
+    this.setState((state) => {
+      const newObject = {
+        ...state.general,
+      };
+      newObject[key] = e.target.value;
+      return {
+        general: {
+          ...newObject,
+        },
+      };
+    });
   }
 
   render() {
@@ -26,7 +45,7 @@ class App extends React.Component {
 
         <div className="main">
           <form onSubmit={(e) => e.preventDefault()}>
-            <General generalInfo={general} />
+            <General generalInfo={general} handleChange={this.handleChange} />
           </form>
         </div>
       </div>
