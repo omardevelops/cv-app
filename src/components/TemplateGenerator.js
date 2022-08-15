@@ -25,6 +25,9 @@ const generateTemplate = (keys) => {
       case 'summary':
         template[key] = { label: 'Summary', type: 'textarea' };
         break;
+      case 'schoolName':
+        template[key] = { label: 'School Name' };
+        break;
       default:
         template[key] = { label: 'ErrorLabel' };
     }

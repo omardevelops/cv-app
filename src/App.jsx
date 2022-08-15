@@ -1,5 +1,5 @@
 import React from 'react';
-import General from './components/General';
+import Form from './components/Form';
 import './reset.css';
 import './App.css';
 
@@ -8,34 +8,42 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      general: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        summary: '',
-      },
+      general: [
+        {
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          summary: '',
+        },
+      ],
+      education: [
+        {
+          schoolName: '',
+        },
+        {
+          schoolName: '',
+        },
+      ],
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e, key) {
+  handleChange(e, key, section, index) {
+    console.log(this.state);
     this.setState((state) => {
-      const newObject = {
-        ...state.general,
-      };
-      newObject[key] = e.target.value;
-      return {
-        general: {
-          ...newObject,
-        },
-      };
+      const newArr = [...state[section]]; // Get old entries and values
+      newArr[index][key] = e.target.value; // Set new value
+
+      const resultObject = {};
+      resultObject[section] = newArr;
+
+      return resultObject;
     });
   }
 
   render() {
-    const { general } = this.state;
     return (
       <div className="App">
         <nav>
@@ -44,7 +52,7 @@ class App extends React.Component {
 
         <div className="main">
           <form onSubmit={(e) => e.preventDefault()}>
-            <General generalInfo={general} handleChange={this.handleChange} />
+            <Form info={this.state} handleChange={this.handleChange} />
           </form>
         </div>
       </div>
