@@ -10,16 +10,25 @@ const generateTemplate = (keys) => {
         template[key] = { label: 'Last Name' };
         break;
       case 'email':
-        template[key] = { label: 'Email', type: 'email' };
+        template[key] = {
+          label: 'Email',
+          type: 'email',
+          errorMsg: 'Use a valid email format (johnsmith@jonathan.com)',
+        };
         break;
       case 'phone':
-        template[key] = { label: 'Phone Number', type: 'tel' };
+        template[key] = {
+          label: 'Phone Number',
+          type: 'tel',
+          pattern: '^[0-9]*$',
+          errorMsg: 'Use an appropriate phone number format (97150XXXXXXX)',
+        };
         break;
       case 'summary':
         template[key] = { label: 'Summary', type: 'textarea' };
         break;
       default:
-        template[key] = { label: 'oops' };
+        template[key] = { label: 'ErrorLabel' };
     }
   });
 

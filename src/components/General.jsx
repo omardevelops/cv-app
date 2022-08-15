@@ -18,7 +18,6 @@ class General extends React.Component {
 
         <div>
           {infoKeys.map((key) => {
-            console.log('test');
             let inputElement;
             if (template[key].type === 'textarea') {
               inputElement = (
@@ -35,6 +34,7 @@ class General extends React.Component {
                   id={key}
                   value={generalInfo[key]}
                   onChange={(e) => handleChange(e, key)}
+                  pattern={template[key].pattern}
                 />
               );
             }
@@ -42,6 +42,7 @@ class General extends React.Component {
               <label key={key} htmlFor={key}>
                 <p>{template[key].label}</p>
                 {inputElement}
+                <span>{`*Invalid Input. ${template[key].errorMsg ?? ''}`}</span>
               </label>
             );
           })}

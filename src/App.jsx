@@ -21,7 +21,6 @@ class App extends React.Component {
   }
 
   handleChange(e, key) {
-    console.log(this.state);
     this.setState((state) => {
       const newObject = {
         ...state.general,

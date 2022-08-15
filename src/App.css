@@ -94,8 +94,16 @@ textarea {
   border: none;
   outline: 2px solid gray;
 }
+form span {
+  color: red;
+  display: none;
+}
 input:invalid {
   outline-color: red;
+}
+
+input:invalid + span {
+  display: inline;
 }
 
 @media only screen and (max-width: 767px) {
