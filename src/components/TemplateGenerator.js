@@ -20,8 +20,6 @@ const generateTemplate = (keys) => {
         template[key] = {
           label: 'Phone Number',
           type: 'tel',
-          pattern: '^[0-9]*$',
-          errorMsg: 'Use an appropriate phone number format (97150XXXXXXX)',
         };
         break;
       case 'summary':
