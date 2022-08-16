@@ -1,11 +1,11 @@
 import React from 'react';
 import generateTemplate from './TemplateGenerator';
 
-const sections = [
-  { general: 'Personal Information' },
-  { education: 'Education' },
-  { experience: 'Experience' },
-];
+const sectionTemplate = {
+  general: 'Personal Information',
+  education: 'Education',
+  experience: 'Experience',
+};
 
 class Form extends React.Component {
   constructor(props) {
@@ -55,18 +55,18 @@ class Form extends React.Component {
   }
 
   render() {
-    const { info } = this.props;
-    const section = 'general';
+    const { info } = this.props; // Get state
+    const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
     return (
       <div>
-        <fieldset className="general">
-          <legend>Personal Information</legend>
-          <div>{this.generateFormFields(info[section], section)}</div>
-        </fieldset>
-        <fieldset className="education">
-          <legend>Education</legend>
-          <div>{this.generateFormFields(info['education'], 'education')}</div>
-        </fieldset>
+        {sections.map((section) => (
+          <div key={section}>
+            <fieldset className={section}>
+              <legend>{sectionTemplate[section]}</legend>
+              <div>{this.generateFormFields(info[section], section)}</div>
+            </fieldset>
+          </div>
+        ))}
       </div>
     );
   }
