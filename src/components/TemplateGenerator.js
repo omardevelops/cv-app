@@ -25,8 +25,17 @@ const generateTemplate = (keys) => {
       case 'summary':
         template[key] = { label: 'Summary', type: 'textarea' };
         break;
-      case 'schoolName':
-        template[key] = { label: 'School Name' };
+      case 'institutionName':
+        template[key] = { label: 'Institution Name' };
+        break;
+      case 'titleOfStudy':
+        template[key] = { label: 'Title of Study' };
+        break;
+      case 'startDate':
+        template[key] = { label: 'Start Date', type: 'date' };
+        break;
+      case 'endDate':
+        template[key] = { label: 'End Date', type: 'date' };
         break;
       default:
         template[key] = { label: 'ErrorLabel' };

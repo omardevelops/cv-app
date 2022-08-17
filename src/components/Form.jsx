@@ -8,13 +8,7 @@ const sectionTemplate = {
 };
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.generateFormFields = this.generateFormFields.bind(this);
-  }
-
-  generateFormFields(info, section) {
+  generateFormFields = (info, section) => {
     // Get array of generalInfo keys
     const { handleChange } = this.props;
 
@@ -52,7 +46,32 @@ class Form extends React.Component {
         );
       });
     });
-  }
+  };
+
+  // Allows
+  generateAddRemoveBtns = (section) => {
+    const { addToSection, removeFromSection } = this.props;
+    if (section === 'education' || section === 'experience') {
+      return (
+        <div className="btnGroup">
+          <button
+            type="button"
+            className="add"
+            onClick={(e) => addToSection(e, section)}
+          >
+            Add
+          </button>
+          <button
+            type="button"
+            className="remove"
+            onClick={(e) => removeFromSection(e, section)}
+          >
+            Remove
+          </button>
+        </div>
+      );
+    }
+  };
 
   render() {
     const { info } = this.props; // Get state
@@ -63,7 +82,10 @@ class Form extends React.Component {
           <div key={section}>
             <fieldset className={section}>
               <legend>{sectionTemplate[section]}</legend>
-              <div>{this.generateFormFields(info[section], section)}</div>
+              <div>
+                {this.generateFormFields(info[section], section)}
+                {this.generateAddRemoveBtns(section)}
+              </div>
             </fieldset>
           </div>
         ))}

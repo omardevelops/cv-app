@@ -7,6 +7,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.educationTemplate = {
+      institutionName: '',
+      titleOfStudy: '',
+      startDate: '',
+      endDate: '', // could be ongoing/present
+    };
+
     this.state = {
       general: [
         {
@@ -17,20 +24,15 @@ class App extends React.Component {
           summary: '',
         },
       ],
-      education: [
-        {
-          schoolName: '',
-        },
-        {
-          schoolName: '',
-        },
-      ],
+      education: [],
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.addToSection = this.addToSection.bind(this);
+    // this.removeFromSection = this.removeFromSection.bind(this);
   }
 
-  handleChange(e, key, section, index) {
+  handleChange = (e, key, section, index) => {
     console.log(this.state);
     this.setState((state) => {
       const newArr = [...state[section]]; // Get old entries and values
@@ -41,7 +43,11 @@ class App extends React.Component {
 
       return resultObject;
     });
-  }
+  };
+
+  addToSection = (e, section) => {};
+
+  removeFromSection = (e, section) => {};
 
   render() {
     return (
@@ -52,7 +58,12 @@ class App extends React.Component {
 
         <div className="main">
           <form onSubmit={(e) => e.preventDefault()}>
-            <Form info={this.state} handleChange={this.handleChange} />
+            <Form
+              info={this.state}
+              handleChange={this.handleChange}
+              addToSection={this.addToSection}
+              removeFromSection={this.removeFromSection}
+            />
           </form>
         </div>
       </div>
