@@ -7,11 +7,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.educationTemplate = {
-      institutionName: '',
-      titleOfStudy: '',
-      startDate: '',
-      endDate: '', // could be ongoing/present
+    this.keys = {
+      education: ['institutionName', 'titleOfStudy', 'startDate', 'endDate'],
+      experience: ['', '', ''],
     };
 
     this.state = {
@@ -45,7 +43,21 @@ class App extends React.Component {
     });
   };
 
-  addToSection = (e, section) => {};
+  addToSection = (e, section) => {
+    console.log(this.state);
+    this.setState((state) => {
+      const newEntry = {};
+      this.keys[section].forEach((key) => {
+        newEntry[key] = '';
+      });
+      const newArr = state[section].concat(newEntry);
+
+      const resultObject = {};
+      resultObject[section] = newArr;
+
+      return resultObject;
+    });
+  };
 
   removeFromSection = (e, section) => {};
 
