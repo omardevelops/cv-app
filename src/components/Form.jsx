@@ -31,7 +31,8 @@ class Form extends React.Component {
       }
 
       return (
-        <div id={info[index].id} key={info[index].id}>
+        <div className="entry" id={info[index].id} key={info[index].id}>
+          <h2>{`Entry ${index}`}</h2>
           {infoKeys.map((key) => {
             // Generate all form fields except for readOnly id field
             if (key !== 'id') {

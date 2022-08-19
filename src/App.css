@@ -67,9 +67,20 @@ form fieldset {
   margin-top: 45px;
 }
 
-form fieldset legend {
+form fieldset legend + div {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+form fieldset legend,
+h2 {
   font-size: 2rem;
   font-weight: bold;
+}
+
+form fieldset h2 {
+  font-size: 1.5rem;
 }
 
 /* Select Labels & Input Fields */
@@ -127,6 +138,7 @@ form button:hover {
 }
 
 form button.add {
+  margin-top: 30px;
   color: var(--accent-color-3);
   border: 2px solid var(--accent-color-3);
 }
@@ -135,6 +147,9 @@ form button.add:hover {
   color: white;
 }
 form button.remove {
+  width: 250px;
+  align-self: center;
+  margin-top: 0;
   color: var(--accent-color-2);
   border: 2px solid var(--accent-color-2);
 }
