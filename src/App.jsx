@@ -10,7 +10,7 @@ class App extends React.Component {
 
     this.keys = {
       education: ['institutionName', 'titleOfStudy', 'startDate', 'endDate'],
-      experience: ['', '', ''],
+      experience: ['a', 'b', 'c'],
     };
 
     this.state = {
@@ -25,6 +25,7 @@ class App extends React.Component {
         },
       ],
       education: [],
+      experience: [],
     };
 
     // this.handleChange = this.handleChange.bind(this);
