@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import React from 'react';
 import Form from './components/Form';
 import './reset.css';
@@ -20,6 +21,7 @@ class App extends React.Component {
           email: '',
           phone: '',
           summary: '',
+          id: nanoid(),
         },
       ],
       education: [],
@@ -31,7 +33,6 @@ class App extends React.Component {
   }
 
   handleChange = (e, key, section, index) => {
-    console.log(this.state);
     this.setState((state) => {
       const newArr = [...state[section]]; // Get old entries and values
       newArr[index][key] = e.target.value; // Set new value
@@ -44,9 +45,8 @@ class App extends React.Component {
   };
 
   addToSection = (e, section) => {
-    console.log(this.state);
     this.setState((state) => {
-      const newEntry = {};
+      const newEntry = { id: nanoid() };
       this.keys[section].forEach((key) => {
         newEntry[key] = '';
       });

@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import React from 'react';
 import generateTemplate from './TemplateGenerator';
 
@@ -18,35 +17,39 @@ class Form extends React.Component {
       const template = generateTemplate(infoKeys);
 
       return (
-        <div key={nanoid()}>
+        <div id={info[index].id} key={info[index].id}>
           {infoKeys.map((key) => {
-            let inputElement;
-            if (template[key].type === 'textarea') {
-              inputElement = (
-                <textarea
-                  id={key}
-                  rows="4"
-                  onChange={(e) => handleChange(e, key, section, index)}
-                />
-              );
-            } else {
-              inputElement = (
-                <input
-                  type={template[key].type}
-                  id={key}
-                  value={info[key]}
-                  onChange={(e) => handleChange(e, key, section, index)}
-                  pattern={template[key].pattern}
-                />
+            if (key !== 'id') {
+              let inputElement;
+              if (template[key].type === 'textarea') {
+                inputElement = (
+                  <textarea
+                    id={key}
+                    rows="4"
+                    onChange={(e) => handleChange(e, key, section, index)}
+                  />
+                );
+              } else {
+                inputElement = (
+                  <input
+                    type={template[key].type}
+                    id={key}
+                    value={info[index][key]}
+                    onChange={(e) => handleChange(e, key, section, index)}
+                    pattern={template[key].pattern}
+                  />
+                );
+              }
+              return (
+                <label key={key} htmlFor={key}>
+                  <p>{template[key].label}</p>
+                  {inputElement}
+                  <span>
+                    {`*Invalid Input. ${template[key].errorMsg ?? ''}`}
+                  </span>
+                </label>
               );
             }
-            return (
-              <label key={key} htmlFor={key}>
-                <p>{template[key].label}</p>
-                {inputElement}
-                <span>{`*Invalid Input. ${template[key].errorMsg ?? ''}`}</span>
-              </label>
-            );
           })}
 
           <button type="button" className="remove" onClick={removeFromSection}>
@@ -58,7 +61,7 @@ class Form extends React.Component {
   };
 
   // Allows
-  generateAddRemoveBtns = (section) => {
+  generateAddBtn = (section) => {
     const { addToSection } = this.props;
     if (section === 'education' || section === 'experience') {
       return (
@@ -73,10 +76,11 @@ class Form extends React.Component {
         </div>
       );
     }
+    return '';
   };
 
   render() {
-    const { info } = this.props; // Get state
+    const { info, addToSection } = this.props; // Get state
     const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
     return (
       <div>
@@ -86,7 +90,7 @@ class Form extends React.Component {
               <legend>{sectionTemplate[section]}</legend>
               <div>
                 {this.generateFormFields(info[section], section)}
-                {this.generateAddRemoveBtns(section)}
+                {this.generateAddBtn(section)}
               </div>
             </fieldset>
           </div>
