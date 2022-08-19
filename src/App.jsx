@@ -59,8 +59,16 @@ class App extends React.Component {
     });
   };
 
-  removeFromSection = (e, section) => {
-    console.log(`remove ${section}`);
+  removeFromSection = (e, section, id) => {
+    console.log(`remove ${section} id: ${id}`);
+    this.setState((state) => {
+      const newArr = state[section].filter((entry) => entry.id !== id);
+
+      const resultObject = {};
+      resultObject[section] = newArr;
+
+      return resultObject;
+    });
   };
 
   render() {

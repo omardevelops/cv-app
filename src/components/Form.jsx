@@ -15,12 +15,28 @@ class Form extends React.Component {
     return info.map((item, index) => {
       const infoKeys = Object.keys(item);
       const template = generateTemplate(infoKeys);
+      let removeBtn = '';
+
+      // Only add a remove button for 'education' and 'experience' sections
+      if (section === 'education' || section === 'experience') {
+        removeBtn = (
+          <button
+            type="button"
+            className="remove"
+            onClick={(e) => removeFromSection(e, section, info[index].id)}
+          >
+            Remove
+          </button>
+        );
+      }
 
       return (
         <div id={info[index].id} key={info[index].id}>
           {infoKeys.map((key) => {
+            // Generate all form fields except for readOnly id field
             if (key !== 'id') {
               let inputElement;
+
               if (template[key].type === 'textarea') {
                 inputElement = (
                   <textarea
@@ -53,9 +69,7 @@ class Form extends React.Component {
             return '';
           })}
 
-          <button type="button" className="remove" onClick={removeFromSection}>
-            Remove
-          </button>
+          {removeBtn}
         </div>
       );
     });
