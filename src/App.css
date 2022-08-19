@@ -73,7 +73,7 @@ form fieldset legend {
 }
 
 /* Select Labels & Input Fields */
-form fieldset > legend + div {
+form fieldset legend + div > div {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@ form input[type='date'] {
   cursor: pointer;
 }
 
-form .btnGroup button {
+form button {
   width: 100%;
   height: 50px;
   font: inherit;
@@ -122,23 +122,23 @@ form .btnGroup button {
   transition: 0.1s;
   cursor: pointer;
 }
-form .btnGroup button:hover {
+form button:hover {
   transition: 0.1s;
 }
 
-form .btnGroup button.add {
+form button.add {
   color: var(--accent-color-3);
   border: 2px solid var(--accent-color-3);
 }
-form .btnGroup button.add:hover {
+form button.add:hover {
   background-color: var(--accent-color-3);
   color: white;
 }
-form .btnGroup button.remove {
+form button.remove {
   color: var(--accent-color-2);
   border: 2px solid var(--accent-color-2);
 }
-form .btnGroup button.remove:hover {
+form button.remove:hover {
   background-color: var(--accent-color-2);
   color: white;
 }

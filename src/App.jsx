@@ -59,7 +59,9 @@ class App extends React.Component {
     });
   };
 
-  removeFromSection = (e, section) => {};
+  removeFromSection = (e, section) => {
+    console.log(`remove ${section}`);
+  };
 
   render() {
     return (
