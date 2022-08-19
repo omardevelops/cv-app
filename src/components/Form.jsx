@@ -15,10 +15,11 @@ class Form extends React.Component {
     return info.map((item, index) => {
       const infoKeys = Object.keys(item);
       const template = generateTemplate(infoKeys);
+      const isModularSect = section === 'education' || section === 'experience';
       let removeBtn = '';
 
       // Only add a remove button for 'education' and 'experience' sections
-      if (section === 'education' || section === 'experience') {
+      if (isModularSect) {
         removeBtn = (
           <button
             type="button"
@@ -32,7 +33,7 @@ class Form extends React.Component {
 
       return (
         <div className="entry" id={info[index].id} key={info[index].id}>
-          <h2>{`Entry ${index}`}</h2>
+          <h2>{isModularSect ? `Entry ${index}` : ''}</h2>
           {infoKeys.map((key) => {
             // Generate all form fields except for readOnly id field
             if (key !== 'id') {
