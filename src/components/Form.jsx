@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import React from 'react';
 import generateTemplate from './TemplateGenerator';
 
@@ -17,7 +18,7 @@ class Form extends React.Component {
       const template = generateTemplate(infoKeys);
 
       return (
-        <div id={index} key={index}>
+        <div key={nanoid()}>
           {infoKeys.map((key) => {
             let inputElement;
             if (template[key].type === 'textarea') {
