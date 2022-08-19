@@ -50,6 +50,7 @@ class Form extends React.Component {
                 </label>
               );
             }
+            return '';
           })}
 
           <button type="button" className="remove" onClick={removeFromSection}>
