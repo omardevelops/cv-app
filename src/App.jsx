@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import React from 'react';
 import Form from './components/Form';
+import CV from './components/CV';
 import './reset.css';
 import './App.css';
 
@@ -57,22 +58,26 @@ class App extends React.Component {
     });
   };
 
+  // Adds a new entry to an input section [education, experience, etc...]
   addToSection = (e, section) => {
     this.setState((state) => {
-      const newEntry = { id: nanoid() };
+      const newEntry = { id: nanoid() }; // Create a new entry with its unique ID
       this.keys[section].forEach((key) => {
+        // Add the entry's form fields
         newEntry[key] = '';
       });
       const newArr = state.info[section].concat(newEntry);
 
-      const resultObject = {};
-      resultObject.info = { ...state.info };
+      const resultObject = {}; // Setup the new state object
+      resultObject.info = { ...state.info }; // Fetch old values
       resultObject.info[section] = newArr;
 
       return resultObject;
     });
   };
 
+  // This function removes an entry from an input section [education, experience, etc...]
+  // The entry's unique ID must be provided as an input
   removeFromSection = (e, section, id) => {
     this.setState((state) => {
       const newArr = state.info[section].filter((entry) => entry.id !== id);
@@ -100,6 +105,8 @@ class App extends React.Component {
         </nav>
 
         <div className="main">
+          {/* Only render form if not submitted. */}
+          {/* Only render CV once form is submitted */}
           {isFormSubmitted === false ? (
             <Form
               info={info}
@@ -110,7 +117,7 @@ class App extends React.Component {
               removeFromSection={this.removeFromSection}
             />
           ) : (
-            <h1>Submitted</h1>
+            <CV info={info} />
           )}
         </div>
       </div>
