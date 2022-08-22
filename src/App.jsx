@@ -42,23 +42,16 @@ class App extends React.Component {
       },
       isFormSubmitted: false,
     };
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.addToSection = this.addToSection.bind(this);
-    // this.removeFromSection = this.removeFromSection.bind(this);
   }
 
   handleChange = (e, key, section, index) => {
     this.setState((state) => {
-      console.log(state);
       const newArr = [...state.info[section]]; // Get old entries and values
       newArr[index][key] = e.target.value; // Set new value
 
       const resultObject = {};
       resultObject.info = { ...state.info };
       resultObject.info[section] = newArr;
-
-      console.log(resultObject);
 
       return resultObject;
     });
@@ -81,7 +74,6 @@ class App extends React.Component {
   };
 
   removeFromSection = (e, section, id) => {
-    console.log(`remove ${section} id: ${id}`);
     this.setState((state) => {
       const newArr = state.info[section].filter((entry) => entry.id !== id);
 
