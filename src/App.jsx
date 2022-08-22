@@ -9,7 +9,13 @@ class App extends React.Component {
     super(props);
 
     this.keys = {
-      education: ['institutionName', 'titleOfStudy', 'startDate', 'endDate'],
+      education: [
+        'institutionName',
+        'titleOfStudy',
+        'GPA',
+        'startDate',
+        'endDate',
+      ],
       experience: ['a', 'b', 'c'],
     };
 

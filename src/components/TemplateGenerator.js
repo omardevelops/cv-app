@@ -37,6 +37,9 @@ const generateTemplate = (keys) => {
       case 'endDate':
         template[key] = { label: 'End Date', type: 'date' };
         break;
+      case 'GPA':
+        template[key] = { label: 'GPA' };
+        break;
       default:
         template[key] = { label: 'ErrorLabel' };
     }
