@@ -33,7 +33,11 @@ class Form extends React.Component {
 
       return (
         <div className="entry" id={info[index].id} key={info[index].id}>
-          <h2>{isModularSect ? `Entry ${index + 1}` : ''}</h2>
+          <h2>
+            {isModularSect
+              ? `Entry ${index + 1}: ${info[index].institutionName}`
+              : ''}
+          </h2>
           {infoKeys.map((key) => {
             // Generate all form fields except for readOnly id field
             if (key !== 'id') {
@@ -98,11 +102,16 @@ class Form extends React.Component {
   };
 
   onFormSubmit = (e) => {
+    const { handleSubmission } = this.props;
     e.preventDefault();
+    if (e.target.checkValidity()) {
+      alert('Form successfully submitted');
+      handleSubmission();
+    }
   };
 
   render() {
-    const { info, addToSection } = this.props; // Get state
+    const { info } = this.props; // Get state
     const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
     return (
       <form onSubmit={this.onFormSubmit}>

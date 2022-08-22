@@ -26,18 +26,21 @@ class App extends React.Component {
     };
 
     this.state = {
-      general: [
-        {
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          summary: '',
-          id: nanoid(),
-        },
-      ],
-      education: [],
-      experience: [],
+      info: {
+        general: [
+          {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            summary: '',
+            id: nanoid(),
+          },
+        ],
+        education: [],
+        experience: [],
+      },
+      isFormSubmitted: false,
     };
 
     // this.handleChange = this.handleChange.bind(this);
@@ -47,11 +50,15 @@ class App extends React.Component {
 
   handleChange = (e, key, section, index) => {
     this.setState((state) => {
-      const newArr = [...state[section]]; // Get old entries and values
+      console.log(state);
+      const newArr = [...state.info[section]]; // Get old entries and values
       newArr[index][key] = e.target.value; // Set new value
 
       const resultObject = {};
-      resultObject[section] = newArr;
+      resultObject.info = { ...state.info };
+      resultObject.info[section] = newArr;
+
+      console.log(resultObject);
 
       return resultObject;
     });
@@ -63,10 +70,11 @@ class App extends React.Component {
       this.keys[section].forEach((key) => {
         newEntry[key] = '';
       });
-      const newArr = state[section].concat(newEntry);
+      const newArr = state.info[section].concat(newEntry);
 
       const resultObject = {};
-      resultObject[section] = newArr;
+      resultObject.info = { ...state.info };
+      resultObject.info[section] = newArr;
 
       return resultObject;
     });
@@ -75,16 +83,24 @@ class App extends React.Component {
   removeFromSection = (e, section, id) => {
     console.log(`remove ${section} id: ${id}`);
     this.setState((state) => {
-      const newArr = state[section].filter((entry) => entry.id !== id);
+      const newArr = state.info[section].filter((entry) => entry.id !== id);
 
       const resultObject = {};
-      resultObject[section] = newArr;
+      resultObject.info = { ...state.info };
+      resultObject.info[section] = newArr;
 
       return resultObject;
     });
   };
 
+  submitForm = () => {
+    this.setState({
+      isFormSubmitted: true,
+    });
+  };
+
   render() {
+    const { info, isFormSubmitted } = this.state;
     return (
       <div className="App">
         <nav>
@@ -92,12 +108,18 @@ class App extends React.Component {
         </nav>
 
         <div className="main">
-          <Form
-            info={this.state}
-            handleChange={this.handleChange}
-            addToSection={this.addToSection}
-            removeFromSection={this.removeFromSection}
-          />
+          {isFormSubmitted === false ? (
+            <Form
+              info={info}
+              isSubmitted={isFormSubmitted}
+              handleSubmission={this.submitForm}
+              handleChange={this.handleChange}
+              addToSection={this.addToSection}
+              removeFromSection={this.removeFromSection}
+            />
+          ) : (
+            <h1>Submitted</h1>
+          )}
         </div>
       </div>
     );
