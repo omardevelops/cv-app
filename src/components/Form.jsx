@@ -33,11 +33,7 @@ class Form extends React.Component {
 
       return (
         <div className="entry" id={info[index].id} key={info[index].id}>
-          <h2>
-            {isModularSect
-              ? `Entry ${index + 1}: ${info[index].institutionName}`
-              : ''}
-          </h2>
+          <h2>{isModularSect ? `Entry ${index + 1}` : ''}</h2>
           {infoKeys.map((key) => {
             // Generate all form fields except for readOnly id field
             if (key !== 'id') {
