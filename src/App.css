@@ -6,6 +6,7 @@
   --accent-color-1: #fea82f;
   --accent-color-2: #ca2320;
   --accent-color-3: #4636d2;
+  --accent-color-4: #1b9d51;
 }
 @font-face {
   font-family: Figno;
@@ -127,7 +128,6 @@ form button {
   font: inherit;
   font-weight: 800;
   background: none;
-  color: white;
   border-radius: 30px;
   margin-top: 15px;
   transition: 0.1s;
@@ -156,6 +156,18 @@ form button.remove {
 form button.remove:hover {
   background-color: var(--accent-color-2);
   color: white;
+}
+form button.submit {
+  color: var(--accent-color-4);
+  border: 2px solid var(--accent-color-4);
+  height: 80px;
+  margin-top: 50px;
+  border-radius: 50px;
+  font-size: 1.8rem;
+}
+form button.submit:hover {
+  color: white;
+  background-color: var(--accent-color-4);
 }
 
 @media only screen and (max-width: 767px) {
