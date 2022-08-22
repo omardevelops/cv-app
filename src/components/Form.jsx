@@ -89,6 +89,7 @@ class Form extends React.Component {
             onClick={(e) => addToSection(e, section)}
           >
             Add
+            {` ${section}`}
           </button>
         </div>
       );
