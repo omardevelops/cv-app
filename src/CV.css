@@ -1,0 +1,10 @@
+.CV {
+  width: 100%;
+  background-color: white;
+  color: black;
+}
+.CV header {
+  padding: 15px;
+  background-color: rgb(27, 34, 88);
+  color: white;
+}

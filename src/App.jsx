@@ -4,6 +4,8 @@ import Form from './components/Form';
 import CV from './components/CV';
 import './reset.css';
 import './App.css';
+import './CV.css';
+import testInfo from './testInfo';
 
 class App extends React.Component {
   constructor(props) {
@@ -107,7 +109,9 @@ class App extends React.Component {
         <div className="main">
           {/* Only render form if not submitted. */}
           {/* Only render CV once form is submitted */}
-          {isFormSubmitted === false ? (
+          {/* isFormSubmitted === false */}
+          {/* Set to show CV only for now */}
+          {false ? (
             <Form
               info={info}
               isSubmitted={isFormSubmitted}
@@ -117,7 +121,7 @@ class App extends React.Component {
               removeFromSection={this.removeFromSection}
             />
           ) : (
-            <CV info={info} />
+            <CV info={testInfo} />
           )}
         </div>
       </div>
