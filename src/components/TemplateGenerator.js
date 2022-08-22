@@ -40,6 +40,15 @@ const generateTemplate = (keys) => {
       case 'GPA':
         template[key] = { label: 'GPA' };
         break;
+      case 'companyName':
+        template[key] = { label: 'Company Name' };
+        break;
+      case 'positionTitle':
+        template[key] = { label: 'Position Title' };
+        break;
+      case 'mainTasks':
+        template[key] = { label: 'Summary of Main Tasks', type: 'textarea' };
+        break;
       default:
         template[key] = { label: 'ErrorLabel' };
     }

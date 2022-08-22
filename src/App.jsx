@@ -16,7 +16,13 @@ class App extends React.Component {
         'startDate',
         'endDate',
       ],
-      experience: ['a', 'b', 'c'],
+      experience: [
+        'companyName',
+        'positionTitle',
+        'mainTasks',
+        'startDate',
+        'endDate',
+      ],
     };
 
     this.state = {
@@ -86,14 +92,12 @@ class App extends React.Component {
         </nav>
 
         <div className="main">
-          <form onSubmit={(e) => e.preventDefault()}>
-            <Form
-              info={this.state}
-              handleChange={this.handleChange}
-              addToSection={this.addToSection}
-              removeFromSection={this.removeFromSection}
-            />
-          </form>
+          <Form
+            info={this.state}
+            handleChange={this.handleChange}
+            addToSection={this.addToSection}
+            removeFromSection={this.removeFromSection}
+          />
         </div>
       </div>
     );
