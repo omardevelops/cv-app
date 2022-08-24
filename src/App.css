@@ -16,6 +16,10 @@
   font-family: Rubik;
   src: url('./assets/fonts/Rubik-VariableFont_wght.ttf');
 }
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/OpenSans-VariableFont_wdth\,wght.ttf');
+}
 body {
   font-size: 1.5rem;
   background-color: var(--dark-bg-color);
@@ -46,10 +50,10 @@ nav > h1::before {
 }
 
 .main {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
 
 /* Form */

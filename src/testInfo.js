@@ -3,10 +3,11 @@ const testInfo = {
     {
       firstName: 'Omar',
       lastName: 'Ahmad',
+      title: 'BSc Computer Engineering',
       email: 'omarahmadp91@gmail.com',
       phone: '0528222985',
       summary:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse suscipit risus id suscipit faucibus. Nam volutpat et risus ac rhoncus. Fusce eu tincidunt purus. Aliquam dictum tincidunt mauris, ut dapibus lectus pretium vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam facilisis metus odio. Ut semper dolor vel ante fringilla, at dictum nibh vestibulum. Sed ut sodales nisi. Maecenas tempor augue tempus lacinia blandit. Donec odio arcu, dapibus nec leo vel, vehicula pulvinar urna. Proin ullamcorper vitae nulla et pharetra. Mauris et viverra ex. Nullam sit amet aliquet arcu. Nullam libero ex, tincidunt vel pharetra id, semper et nisi.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dignissim, sapien vel egestas ultricies, massa elit luctus metus, vitae interdum arcu mauris feugiat elit. Pellentesque at nisl ut mi ultrices tristique tincidunt eu lectus. Mauris tortor magna, dapibus vel vulputate sed, rutrum vehicula nulla. Suspendisse potenti. Sed sed tristique enim, vel semper ex. Suspendisse imperdiet est nec libero faucibus vestibulum.',
       id: 'yrRodt98w-HWsIsRNxa10',
     },
   ],
