@@ -68,18 +68,20 @@
   font-size: 1.5rem;
 }
 
-.CV main .experience > div {
+.CV main .experience > div,
+.CV main .education > div {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.CV main .experience > div > div {
+.CV main .experience > div > div,
+.CV main .education > div > div {
   display: grid;
   grid-template-columns: 3fr 1fr;
   column-gap: 30px;
 }
 
-.CV main .experience h3 {
+.CV main h3 {
   margin-bottom: 5px;
 }

@@ -44,6 +44,23 @@ class CV extends React.Component {
               ))}
             </div>
           </div>
+          <div className="education">
+            <h2>Education</h2>
+            <div>
+              {education.map((item) => (
+                <div key={item.id}>
+                  <div>
+                    <h3>{item.titleOfStudy}</h3>
+                    <p>{`GPA ${item.GPA}`}</p>
+                  </div>
+                  <aside>
+                    <h3>{item.institutionName}</h3>
+                    <p>{`${item.startDate} - ${item.endDate}`}</p>
+                  </aside>
+                </div>
+              ))}
+            </div>
+          </div>
         </main>
       </div>
     );
