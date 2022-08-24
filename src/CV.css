@@ -53,3 +53,7 @@
 .CV main p {
   line-height: 1.5;
 }
+
+.CV main h2 {
+  margin-bottom: 8px;
+}
