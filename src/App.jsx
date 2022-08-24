@@ -34,14 +34,15 @@ class App extends React.Component {
           {
             firstName: '',
             lastName: '',
+            title: '',
             email: '',
             phone: '',
             summary: '',
             id: nanoid(),
           },
         ],
-        education: [],
         experience: [],
+        education: [],
       },
       isFormSubmitted: false,
     };
@@ -111,18 +112,19 @@ class App extends React.Component {
           {/* Only render CV once form is submitted */}
           {/* isFormSubmitted === false */}
           {/* Set to show CV only for now */}
-          {isFormSubmitted === false ? (
-            <Form
-              info={info}
-              isSubmitted={isFormSubmitted}
-              handleSubmission={this.submitForm}
-              handleChange={this.handleChange}
-              addToSection={this.addToSection}
-              removeFromSection={this.removeFromSection}
-            />
+          <Form
+            info={info}
+            isSubmitted={isFormSubmitted}
+            handleSubmission={this.submitForm}
+            handleChange={this.handleChange}
+            addToSection={this.addToSection}
+            removeFromSection={this.removeFromSection}
+          />
+          {/* {isFormSubmitted === false ? (
+            
           ) : (
-            <CV info={testInfo} />
-          )}
+          )} */}
+          <CV info={info} />
         </div>
       </div>
     );

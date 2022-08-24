@@ -5,6 +5,7 @@ console.log(format(new Date('2022-07-01'), 'LLL yyyy'));
 
 // Converts YYYY-MM-DD date to MMM YYYY (May 2021), for example
 const convertDates = (start, end) => {
+  if (!start || !end) return '';
   const startResult = format(new Date(start), 'LLL yyyy');
   let endResult;
   if (end.length !== 10) endResult = 'Present';

@@ -50,17 +50,18 @@ nav > h1::before {
 }
 
 .main {
-  /* display: flex; */
-  /* align-items: center;
-  justify-content: center; */
-  /* flex-wrap: wrap; */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Form */
 form {
+  width: 500px;
   background-color: var(--main-bg-color);
   color: var(--secondary-dark-bg-color);
-  margin: 30px 70px;
+  margin: 30px auto;
   padding: 30px;
   border-radius: 15px;
 }
