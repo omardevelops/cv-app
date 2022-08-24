@@ -111,7 +111,7 @@ class App extends React.Component {
           {/* Only render CV once form is submitted */}
           {/* isFormSubmitted === false */}
           {/* Set to show CV only for now */}
-          {false ? (
+          {isFormSubmitted === false ? (
             <Form
               info={info}
               isSubmitted={isFormSubmitted}

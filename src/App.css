@@ -50,18 +50,17 @@ nav > h1::before {
 }
 
 .main {
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap; */
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
+  /* flex-wrap: wrap; */
 }
 
 /* Form */
 form {
   background-color: var(--main-bg-color);
   color: var(--secondary-dark-bg-color);
-  width: 50%;
-  margin: 30px 0;
+  margin: 30px 70px;
   padding: 30px;
   border-radius: 15px;
 }
@@ -109,6 +108,8 @@ textarea {
   border-radius: 10px;
   border: none;
   outline: 2px solid gray;
+  width: 100%;
+  align-self: center;
 }
 form span {
   color: red;
@@ -174,9 +175,10 @@ form button.submit:hover {
 }
 
 @media only screen and (max-width: 767px) {
+  nav {
+    height: 100px;
+  }
   form {
-    width: 100%;
-    padding: 30px 15px;
-    margin: 15px 0;
+    margin: 30px 0;
   }
 }
