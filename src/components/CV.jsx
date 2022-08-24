@@ -1,4 +1,17 @@
 import React from 'react';
+import { format } from 'date-fns';
+
+console.log(format(new Date('2022-07-01'), 'LLL yyyy'));
+
+// Converts YYYY-MM-DD date to MMM YYYY (May 2021), for example
+const convertDates = (start, end) => {
+  const startResult = format(new Date(start), 'LLL yyyy');
+  let endResult;
+  if (end.length !== 10) endResult = 'Present';
+  else endResult = format(new Date(end), 'LLL yyyy');
+
+  return `${startResult} - ${endResult}`;
+};
 
 class CV extends React.Component {
   render() {
@@ -38,7 +51,7 @@ class CV extends React.Component {
                   </div>
                   <aside>
                     <h3>{item.companyName}</h3>
-                    <p>{`${item.startDate} - ${item.endDate}`}</p>
+                    <p>{convertDates(item.startDate, item.endDate)}</p>
                   </aside>
                 </div>
               ))}
@@ -55,7 +68,7 @@ class CV extends React.Component {
                   </div>
                   <aside>
                     <h3>{item.institutionName}</h3>
-                    <p>{`${item.startDate} - ${item.endDate}`}</p>
+                    <p>{convertDates(item.startDate, item.endDate)}</p>
                   </aside>
                 </div>
               ))}
