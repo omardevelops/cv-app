@@ -27,6 +27,23 @@ class CV extends React.Component {
             <h2>Summary</h2>
             <p>{`${general[0].summary}`}</p>
           </div>
+          <div className="experience">
+            <h2>Experience</h2>
+            <div>
+              {experience.map((item) => (
+                <div key={item.id}>
+                  <div>
+                    <h3>{item.positionTitle}</h3>
+                    <p>{item.mainTasks}</p>
+                  </div>
+                  <aside>
+                    <h3>{item.companyName}</h3>
+                    <p>{`${item.startDate} - ${item.endDate}`}</p>
+                  </aside>
+                </div>
+              ))}
+            </div>
+          </div>
         </main>
       </div>
     );
