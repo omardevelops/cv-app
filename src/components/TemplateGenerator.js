@@ -9,6 +9,9 @@ const generateTemplate = (keys) => {
       case 'lastName':
         template[key] = { label: 'Last Name' };
         break;
+      case 'title':
+        template[key] = { label: 'Title/Position' };
+        break;
       case 'email':
         template[key] = {
           label: 'Email',

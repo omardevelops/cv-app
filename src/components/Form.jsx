@@ -24,7 +24,9 @@ class Form extends React.Component {
           <button
             type="button"
             className="remove"
-            onClick={(e) => removeFromSection(e, section, info[index].id)}
+            onClick={(e) =>
+              removeFromSection(e, section, index, info[index].id)
+            }
           >
             Remove
           </button>
@@ -44,6 +46,7 @@ class Form extends React.Component {
                   <textarea
                     id={key}
                     rows="4"
+                    value={info[index][key]}
                     onChange={(e) => handleChange(e, key, section, index)}
                   />
                 );
@@ -107,7 +110,7 @@ class Form extends React.Component {
   };
 
   render() {
-    const { info } = this.props; // Get state
+    const { info, handleClear, handleReset } = this.props; // Get state
     const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
     return (
       <form onSubmit={this.onFormSubmit}>
@@ -122,9 +125,20 @@ class Form extends React.Component {
             </fieldset>
           </div>
         ))}
-        <button type="submit" className="submit">
-          Submit Form
-        </button>
+
+        <div className="btnGroup">
+          <button type="submit" className="submit">
+            Export Form (PDF)
+          </button>
+          <div>
+            <button type="button" className="reset" onClick={handleReset}>
+              Reset Form
+            </button>
+            <button type="button" className="clear" onClick={handleClear}>
+              Clear Form
+            </button>
+          </div>
+        </div>
       </form>
     );
   }
