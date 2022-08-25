@@ -1,5 +1,6 @@
-import { nanoid } from 'nanoid';
 import React from 'react';
+import { nanoid } from 'nanoid';
+import Swal from 'sweetalert2';
 import Form from './components/Form';
 import CV from './components/CV';
 import './reset.css';
@@ -67,16 +68,39 @@ class App extends React.Component {
 
   // This function removes an entry from an input section [education, experience, etc...]
   // The entry's unique ID must be provided as an input
-  removeFromSection = (e, section, id) => {
-    this.setState((state) => {
-      const newArr = state.info[section].filter((entry) => entry.id !== id);
+  removeFromSection = async (e, section, index, id) => {
+    const { info } = this.state;
+    const entryToRemove = info[section][index];
+    let msg = '';
+    if (section === 'education') {
+      msg = `Title: ${entryToRemove.titleOfStudy}<br>Institution: ${entryToRemove.institutionName}`;
+    } else if (section === 'experience') {
+      msg = `Title: ${entryToRemove.positionTitle}<br>Company: ${entryToRemove.companyName}`;
+    }
 
-      const resultObject = {};
-      resultObject.info = { ...state.info };
-      resultObject.info[section] = newArr;
-
-      return resultObject;
+    const result = await Swal.fire({
+      title: `Removing ${
+        section[0].toUpperCase() + section.slice(1, section.length)
+      } Entry #${index + 1}\n Are you sure?`,
+      html: `${msg}<br><br>You won't be able to revert this!`,
+      icon: 'warning',
+      showCancelButton: true,
+      focusCancel: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, clear it!',
     });
+    if (result.isConfirmed) {
+      this.setState((state) => {
+        const newArr = state.info[section].filter((entry) => entry.id !== id);
+
+        const resultObject = {};
+        resultObject.info = { ...state.info };
+        resultObject.info[section] = newArr;
+
+        return resultObject;
+      });
+    }
   };
 
   submitForm = () => {
@@ -85,31 +109,55 @@ class App extends React.Component {
     });
   };
 
-  handleClear = () => {
-    this.setState({
-      info: {
-        general: [
-          {
-            firstName: '',
-            lastName: '',
-            title: '',
-            email: '',
-            phone: '',
-            summary: '',
-            id: nanoid(),
-          },
-        ],
-        education: [],
-        experience: [],
-      },
+  handleClear = async () => {
+    const result = await Swal.fire({
+      title: 'Clear Form: Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      focusCancel: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, clear it!',
     });
+    if (result.isConfirmed) {
+      this.setState({
+        info: {
+          general: [
+            {
+              firstName: '',
+              lastName: '',
+              title: '',
+              email: '',
+              phone: '',
+              summary: '',
+              id: nanoid(),
+            },
+          ],
+          education: [],
+          experience: [],
+        },
+      });
+    }
   };
 
   // Resets info to sample info
-  handleReset = () => {
-    this.setState({
-      info: initialInfo,
+  handleReset = async () => {
+    const result = await Swal.fire({
+      title: 'Reset Form:\n Are you sure?',
+      html: "Form will be filled out with sample data.<br>Your own data will be cleared.<br>You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      focusCancel: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, reset it!',
     });
+    if (result.isConfirmed) {
+      this.setState({
+        info: initialInfo,
+      });
+    }
   };
 
   render() {

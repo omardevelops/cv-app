@@ -24,7 +24,9 @@ class Form extends React.Component {
           <button
             type="button"
             className="remove"
-            onClick={(e) => removeFromSection(e, section, info[index].id)}
+            onClick={(e) =>
+              removeFromSection(e, section, index, info[index].id)
+            }
           >
             Remove
           </button>
@@ -130,7 +132,7 @@ class Form extends React.Component {
           </button>
           <div>
             <button type="button" className="reset" onClick={handleReset}>
-              Load Sample Data
+              Reset Form
             </button>
             <button type="button" className="clear" onClick={handleClear}>
               Clear Form
