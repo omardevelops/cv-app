@@ -168,13 +168,26 @@ form button.remove:hover {
   background-color: var(--accent-color-2);
   color: white;
 }
-form button.submit {
-  color: var(--accent-color-4);
-  border: 2px solid var(--accent-color-4);
+form button.submit,
+form button.clear {
+  border: 2px solid black;
   height: 80px;
   margin-top: 50px;
   border-radius: 50px;
   font-size: 1.8rem;
+}
+form button.clear {
+  height: 50px;
+  color: var(--accent-color-2);
+  border-color: var(--accent-color-2);
+}
+form button.clear:hover {
+  color: white;
+  background-color: var(--accent-color-2);
+}
+form button.submit {
+  color: var(--accent-color-4);
+  border-color: var(--accent-color-4);
 }
 form button.submit:hover {
   color: white;

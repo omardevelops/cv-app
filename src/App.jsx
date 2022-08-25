@@ -85,11 +85,31 @@ class App extends React.Component {
     });
   };
 
-  setInitialInfo = () => {
+  handleClear = () => {
     this.setState({
-      info: initialInfo,
+      info: {
+        general: [
+          {
+            firstName: '',
+            lastName: '',
+            title: '',
+            email: '',
+            phone: '',
+            summary: '',
+            id: nanoid(),
+          },
+        ],
+        education: [],
+        experience: [],
+      },
     });
   };
+
+  // setInitialInfo = () => {
+  //   this.setState({
+  //     info: initialInfo,
+  //   });
+  // };
 
   render() {
     const { info, isFormSubmitted } = this.state;
@@ -110,6 +130,7 @@ class App extends React.Component {
             isSubmitted={isFormSubmitted}
             handleSubmission={this.submitForm}
             handleChange={this.handleChange}
+            handleClear={this.handleClear}
             addToSection={this.addToSection}
             removeFromSection={this.removeFromSection}
           />

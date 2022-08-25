@@ -108,7 +108,7 @@ class Form extends React.Component {
   };
 
   render() {
-    const { info } = this.props; // Get state
+    const { info, handleClear } = this.props; // Get state
     const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
     return (
       <form onSubmit={this.onFormSubmit}>
@@ -123,8 +123,12 @@ class Form extends React.Component {
             </fieldset>
           </div>
         ))}
+
         <button type="submit" className="submit">
           Submit Form
+        </button>
+        <button type="button" className="clear" onClick={handleClear}>
+          Clear Form
         </button>
       </form>
     );
