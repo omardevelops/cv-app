@@ -44,6 +44,7 @@ class Form extends React.Component {
                   <textarea
                     id={key}
                     rows="4"
+                    value={info[index][key]}
                     onChange={(e) => handleChange(e, key, section, index)}
                   />
                 );

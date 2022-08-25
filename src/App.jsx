@@ -5,7 +5,7 @@ import CV from './components/CV';
 import './reset.css';
 import './App.css';
 import './CV.css';
-import testInfo from './testInfo';
+import initialInfo from './initialInfo';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,21 +29,7 @@ class App extends React.Component {
     };
 
     this.state = {
-      info: {
-        general: [
-          {
-            firstName: '',
-            lastName: '',
-            title: '',
-            email: '',
-            phone: '',
-            summary: '',
-            id: nanoid(),
-          },
-        ],
-        experience: [],
-        education: [],
-      },
+      info: initialInfo,
       isFormSubmitted: false,
     };
   }
@@ -99,8 +85,15 @@ class App extends React.Component {
     });
   };
 
+  setInitialInfo = () => {
+    this.setState({
+      info: initialInfo,
+    });
+  };
+
   render() {
     const { info, isFormSubmitted } = this.state;
+
     return (
       <div className="App">
         <nav>
@@ -120,10 +113,6 @@ class App extends React.Component {
             addToSection={this.addToSection}
             removeFromSection={this.removeFromSection}
           />
-          {/* {isFormSubmitted === false ? (
-            
-          ) : (
-          )} */}
           <CV info={info} />
         </div>
       </div>
