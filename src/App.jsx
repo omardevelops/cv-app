@@ -70,12 +70,12 @@ class App extends React.Component {
   // The entry's unique ID must be provided as an input
   removeFromSection = async (e, section, index, id) => {
     const { info } = this.state;
-    const entry = info[section][index];
+    const entryToRemove = info[section][index];
     let msg = '';
     if (section === 'education') {
-      msg = `Title: ${entry.titleOfStudy}<br>Institution: ${entry.institutionName}`;
+      msg = `Title: ${entryToRemove.titleOfStudy}<br>Institution: ${entryToRemove.institutionName}`;
     } else if (section === 'experience') {
-      msg = `Title: ${entry.positionTitle}<br>Company: ${entry.companyName}`;
+      msg = `Title: ${entryToRemove.positionTitle}<br>Company: ${entryToRemove.companyName}`;
     }
 
     const result = await Swal.fire({
