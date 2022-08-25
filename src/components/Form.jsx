@@ -130,7 +130,7 @@ class Form extends React.Component {
           </button>
           <div>
             <button type="button" className="reset" onClick={handleReset}>
-              Load Sample Data
+              Reset Form
             </button>
             <button type="button" className="clear" onClick={handleClear}>
               Clear Form
