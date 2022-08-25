@@ -64,6 +64,7 @@ form {
   margin: 30px auto;
   padding: 30px;
   border-radius: 15px;
+  font-size: 1rem;
 }
 
 form fieldset {
@@ -77,19 +78,22 @@ form fieldset legend + div {
   gap: 45px;
 }
 
-form fieldset legend,
-h2 {
-  font-size: 2rem;
-  font-weight: bold;
+form fieldset legend {
+  font-size: 2.3rem;
 }
 
 form fieldset h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  margin-top: 15px;
+}
+
+form fieldset legend,
+h2 {
+  font-weight: bold;
 }
 
 /* Select Labels & Input Fields */
 form fieldset legend + div > div {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -100,11 +104,12 @@ form label {
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  font-size: 1.5rem;
 }
 input,
 textarea {
   font: inherit;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -131,6 +136,7 @@ form button {
   width: 100%;
   height: 50px;
   font: inherit;
+  font-size: 1.5rem;
   font-weight: 800;
   background: none;
   border-radius: 30px;
