@@ -145,7 +145,7 @@ class App extends React.Component {
   handleReset = async () => {
     const result = await Swal.fire({
       title: 'Reset Form:\n Are you sure?',
-      text: "Form will be filled out with sample data. Your own data will be cleared. You won't be able to revert this!",
+      html: "Form will be filled out with sample data.<br>Your own data will be cleared.<br>You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       focusCancel: true,
