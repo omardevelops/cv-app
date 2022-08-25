@@ -68,16 +68,39 @@ class App extends React.Component {
 
   // This function removes an entry from an input section [education, experience, etc...]
   // The entry's unique ID must be provided as an input
-  removeFromSection = (e, section, id) => {
-    this.setState((state) => {
-      const newArr = state.info[section].filter((entry) => entry.id !== id);
+  removeFromSection = async (e, section, index, id) => {
+    const { info } = this.state;
+    const entry = info[section][index];
+    let msg = '';
+    if (section === 'education') {
+      msg = `Title: ${entry.titleOfStudy}<br>Institution: ${entry.institutionName}`;
+    } else if (section === 'experience') {
+      msg = `Title: ${entry.positionTitle}<br>Company: ${entry.companyName}`;
+    }
 
-      const resultObject = {};
-      resultObject.info = { ...state.info };
-      resultObject.info[section] = newArr;
-
-      return resultObject;
+    const result = await Swal.fire({
+      title: `Removing ${
+        section[0].toUpperCase() + section.slice(1, section.length)
+      } Entry #${index + 1}\n Are you sure?`,
+      html: `${msg}<br><br>You won't be able to revert this!`,
+      icon: 'warning',
+      showCancelButton: true,
+      focusCancel: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, clear it!',
     });
+    if (result.isConfirmed) {
+      this.setState((state) => {
+        const newArr = state.info[section].filter((entry) => entry.id !== id);
+
+        const resultObject = {};
+        resultObject.info = { ...state.info };
+        resultObject.info[section] = newArr;
+
+        return resultObject;
+      });
+    }
   };
 
   submitForm = () => {
