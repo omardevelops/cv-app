@@ -105,11 +105,12 @@ class App extends React.Component {
     });
   };
 
-  // setInitialInfo = () => {
-  //   this.setState({
-  //     info: initialInfo,
-  //   });
-  // };
+  // Resets info to sample info
+  handleReset = () => {
+    this.setState({
+      info: initialInfo,
+    });
+  };
 
   render() {
     const { info, isFormSubmitted } = this.state;
@@ -131,6 +132,7 @@ class App extends React.Component {
             handleSubmission={this.submitForm}
             handleChange={this.handleChange}
             handleClear={this.handleClear}
+            handleReset={this.handleReset}
             addToSection={this.addToSection}
             removeFromSection={this.removeFromSection}
           />

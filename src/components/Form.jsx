@@ -108,7 +108,7 @@ class Form extends React.Component {
   };
 
   render() {
-    const { info, handleClear } = this.props; // Get state
+    const { info, handleClear, handleReset } = this.props; // Get state
     const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
     return (
       <form onSubmit={this.onFormSubmit}>
@@ -124,12 +124,19 @@ class Form extends React.Component {
           </div>
         ))}
 
-        <button type="submit" className="submit">
-          Submit Form
-        </button>
-        <button type="button" className="clear" onClick={handleClear}>
-          Clear Form
-        </button>
+        <div className="btnGroup">
+          <button type="submit" className="submit">
+            Export Form (PDF)
+          </button>
+          <div>
+            <button type="button" className="reset" onClick={handleReset}>
+              Load Sample Data
+            </button>
+            <button type="button" className="clear" onClick={handleClear}>
+              Clear Form
+            </button>
+          </div>
+        </div>
       </form>
     );
   }
