@@ -1,5 +1,6 @@
-import { nanoid } from 'nanoid';
 import React from 'react';
+import { nanoid } from 'nanoid';
+import Swal from 'sweetalert2';
 import Form from './components/Form';
 import CV from './components/CV';
 import './reset.css';
@@ -85,24 +86,36 @@ class App extends React.Component {
     });
   };
 
-  handleClear = () => {
-    this.setState({
-      info: {
-        general: [
-          {
-            firstName: '',
-            lastName: '',
-            title: '',
-            email: '',
-            phone: '',
-            summary: '',
-            id: nanoid(),
-          },
-        ],
-        education: [],
-        experience: [],
-      },
+  handleClear = async () => {
+    const result = await Swal.fire({
+      title: 'Clear Form: Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      focusCancel: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, clear it!',
     });
+    if (result.isConfirmed) {
+      this.setState({
+        info: {
+          general: [
+            {
+              firstName: '',
+              lastName: '',
+              title: '',
+              email: '',
+              phone: '',
+              summary: '',
+              id: nanoid(),
+            },
+          ],
+          education: [],
+          experience: [],
+        },
+      });
+    }
   };
 
   // Resets info to sample info
