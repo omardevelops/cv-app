@@ -230,14 +230,12 @@ form .btnGroup {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .printPage button {
   height: 80px;
   width: 350px;
-  background-color: white;
+  background-color: var(--main-bg-color);
 }
 .printPage button.print:hover {
   background-color: var(--accent-color-4);
