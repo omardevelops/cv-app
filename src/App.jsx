@@ -1,12 +1,22 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import Swal from 'sweetalert2';
+import ReactToPrint from 'react-to-print';
 import Form from './components/Form';
 import CV from './components/CV';
 import './reset.css';
 import './App.css';
 import './CV.css';
 import initialInfo from './initialInfo';
+
+const generatePrintBtn = () => {
+  console.log('hi');
+  return (
+    <button type="button" className="print">
+      Print
+    </button>
+  );
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -109,6 +119,12 @@ class App extends React.Component {
     });
   };
 
+  backToEditMode = () => {
+    this.setState({
+      isFormSubmitted: false,
+    });
+  };
+
   handleClear = async () => {
     const result = await Swal.fire({
       title: 'Clear Form: Are you sure?',
@@ -168,24 +184,49 @@ class App extends React.Component {
         <nav>
           <h1>CV Generator</h1>
         </nav>
+        {/* Only render form if not submitted. */}
+        {/* Only render CV once form is submitted */}
+        {/* isFormSubmitted === false */}
+        {/* Set to show CV only for now */}
 
-        <div className="main">
-          {/* Only render form if not submitted. */}
-          {/* Only render CV once form is submitted */}
-          {/* isFormSubmitted === false */}
-          {/* Set to show CV only for now */}
-          <Form
-            info={info}
-            isSubmitted={isFormSubmitted}
-            handleSubmission={this.submitForm}
-            handleChange={this.handleChange}
-            handleClear={this.handleClear}
-            handleReset={this.handleReset}
-            addToSection={this.addToSection}
-            removeFromSection={this.removeFromSection}
-          />
-          <CV info={info} />
-        </div>
+        {isFormSubmitted === false ? (
+          <div className="main">
+            <Form
+              info={info}
+              isSubmitted={isFormSubmitted}
+              handleSubmission={this.submitForm}
+              handleChange={this.handleChange}
+              handleClear={this.handleClear}
+              handleReset={this.handleReset}
+              addToSection={this.addToSection}
+              removeFromSection={this.removeFromSection}
+            />
+            <CV info={info} />
+          </div>
+        ) : (
+          <div className="printPage">
+            <div className="printGroup">
+              <ReactToPrint
+                trigger={generatePrintBtn}
+                content={() => this.componentRef}
+              />
+              <button
+                type="button"
+                className="edit"
+                onClick={this.backToEditMode}
+              >
+                Back to Edit
+              </button>
+            </div>
+
+            <CV
+              info={info}
+              ref={(el) => {
+                this.componentRef = el;
+              }}
+            />
+          </div>
+        )}
       </div>
     );
   }

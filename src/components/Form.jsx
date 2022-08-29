@@ -24,9 +24,9 @@ class Form extends React.Component {
           <button
             type="button"
             className="remove"
-            onClick={(e) =>
-              removeFromSection(e, section, index, info[index].id)
-            }
+            onClick={(e) => {
+              removeFromSection(e, section, index, info[index].id);
+            }}
           >
             Remove
           </button>
@@ -103,10 +103,7 @@ class Form extends React.Component {
   onFormSubmit = (e) => {
     const { handleSubmission } = this.props;
     e.preventDefault();
-    if (e.target.checkValidity()) {
-      alert('Form successfully submitted');
-      handleSubmission();
-    }
+    handleSubmission();
   };
 
   render() {
