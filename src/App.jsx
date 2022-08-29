@@ -9,6 +9,15 @@ import './App.css';
 import './CV.css';
 import initialInfo from './initialInfo';
 
+const generatePrintBtn = () => {
+  console.log('hi');
+  return (
+    <button type="button" className="print">
+      Print
+    </button>
+  );
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -167,15 +176,6 @@ class App extends React.Component {
     }
   };
 
-  generatePrintBtn = () => {
-    console.log('hi');
-    return (
-      <button type="button" className="print">
-        Print
-      </button>
-    );
-  };
-
   render() {
     const { info, isFormSubmitted } = this.state;
 
@@ -207,7 +207,7 @@ class App extends React.Component {
           <div className="printPage">
             <div className="printGroup">
               <ReactToPrint
-                trigger={this.generatePrintBtn}
+                trigger={generatePrintBtn}
                 content={() => this.componentRef}
               />
               <button
