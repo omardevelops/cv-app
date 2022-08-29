@@ -103,10 +103,7 @@ class Form extends React.Component {
   onFormSubmit = (e) => {
     const { handleSubmission } = this.props;
     e.preventDefault();
-    if (e.target.checkValidity()) {
-      alert('Form successfully submitted');
-      handleSubmission();
-    }
+    handleSubmission();
   };
 
   render() {

@@ -110,6 +110,12 @@ class App extends React.Component {
     });
   };
 
+  backToEditMode = () => {
+    this.setState({
+      isFormSubmitted: false,
+    });
+  };
+
   handleClear = async () => {
     const result = await Swal.fire({
       title: 'Clear Form: Are you sure?',
@@ -204,7 +210,11 @@ class App extends React.Component {
                 trigger={this.generatePrintBtn}
                 content={() => this.componentRef}
               />
-              <button type="button" className="edit">
+              <button
+                type="button"
+                className="edit"
+                onClick={this.backToEditMode}
+              >
                 Back to Edit
               </button>
             </div>
