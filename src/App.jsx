@@ -113,6 +113,29 @@ class App extends React.Component {
     }
   };
 
+  moveUpInSection = (e, index, section) => {
+    const { info } = this.state;
+    const { length } = info[section];
+
+    if (length > 1 && index !== 0) {
+      this.setState((state) => {
+        const itemToMove = state.info[section].filter((item, i) => i === index);
+        const newArr = state.info[section].filter((item, i) => i !== index);
+        newArr.splice(index - 1, 0, ...itemToMove);
+
+        const resultObject = {};
+        resultObject.info = { ...state.info };
+        resultObject.info[section] = newArr;
+
+        return resultObject;
+      });
+    }
+  };
+
+  moveDownInSection = (e, index) => {
+    console.log('down');
+  };
+
   submitForm = () => {
     this.setState({
       isFormSubmitted: true,
@@ -200,6 +223,8 @@ class App extends React.Component {
               handleReset={this.handleReset}
               addToSection={this.addToSection}
               removeFromSection={this.removeFromSection}
+              moveUpInSection={this.moveUpInSection}
+              moveDownInSection={this.moveDownInSection}
             />
             <CV info={info} />
           </div>

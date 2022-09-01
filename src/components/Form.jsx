@@ -10,13 +10,20 @@ const sectionTemplate = {
 class Form extends React.Component {
   generateFormFields = (info, section) => {
     // Get array of generalInfo keys
-    const { handleChange, removeFromSection } = this.props;
+    const {
+      handleChange,
+      removeFromSection,
+      moveUpInSection,
+      moveDownInSection,
+    } = this.props;
 
     return info.map((item, index) => {
       const infoKeys = Object.keys(item);
       const template = generateTemplate(infoKeys);
       const isModularSect = section === 'education' || section === 'experience';
       let removeBtn = '';
+      let moveUpBtn = '';
+      let moveDownBtn = '';
 
       // Only add a remove button for 'education' and 'experience' sections
       if (isModularSect) {
@@ -29,6 +36,27 @@ class Form extends React.Component {
             }}
           >
             Remove
+          </button>
+        );
+
+        moveUpBtn = (
+          <button
+            type="button"
+            onClick={(e) => {
+              moveUpInSection(e, index, section);
+            }}
+          >
+            Move Up
+          </button>
+        );
+        moveDownBtn = (
+          <button
+            type="button"
+            onClick={(e) => {
+              moveDownInSection(e);
+            }}
+          >
+            Move Down
           </button>
         );
       }
@@ -74,6 +102,8 @@ class Form extends React.Component {
             return '';
           })}
 
+          {moveUpBtn}
+          {moveDownBtn}
           {removeBtn}
         </div>
       );
