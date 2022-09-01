@@ -157,16 +157,39 @@ form button.add:hover {
   background-color: var(--accent-color-3);
   color: white;
 }
+
+form button.move,
 form button.remove {
-  width: 250px;
-  align-self: center;
+  width: 200px;
   margin-top: 0;
   color: var(--accent-color-2);
   border: 2px solid var(--accent-color-2);
 }
+
 form button.remove:hover {
   background-color: var(--accent-color-2);
   color: white;
+}
+form .itemBtns {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+form .itemBtns div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form button.move {
+  color: var(--dark-bg-color);
+  border-color: var(--dark-bg-color);
+}
+
+form button.move:hover {
+  color: var(--main-bg-color);
+  background-color: var(--dark-bg-color);
 }
 button.print,
 button.edit,
