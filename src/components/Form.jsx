@@ -42,6 +42,7 @@ class Form extends React.Component {
         moveUpBtn = (
           <button
             type="button"
+            className="move"
             onClick={(e) => {
               moveUpInSection(e, index, section);
             }}
@@ -52,6 +53,7 @@ class Form extends React.Component {
         moveDownBtn = (
           <button
             type="button"
+            className="move"
             onClick={(e) => {
               moveDownInSection(e, index, section);
             }}
@@ -102,9 +104,13 @@ class Form extends React.Component {
             return '';
           })}
 
-          {moveUpBtn}
-          {moveDownBtn}
-          {removeBtn}
+          <div className="itemBtns">
+            <div>
+              {moveUpBtn}
+              {moveDownBtn}
+            </div>
+            {removeBtn}
+          </div>
         </div>
       );
     });
