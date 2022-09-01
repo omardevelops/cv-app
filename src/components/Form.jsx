@@ -53,7 +53,7 @@ class Form extends React.Component {
           <button
             type="button"
             onClick={(e) => {
-              moveDownInSection(e);
+              moveDownInSection(e, index, section);
             }}
           >
             Move Down

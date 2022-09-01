@@ -132,8 +132,26 @@ class App extends React.Component {
     }
   };
 
-  moveDownInSection = (e, index) => {
-    console.log('down');
+  moveDownInSection = (e, index, section) => {
+    const { info } = this.state;
+    const { length } = info[section];
+
+    // Section must have at least two items, item should not be the last one
+    if (length > 1 && index < length - 1) {
+      this.setState((state) => {
+        const itemToMove = state.info[section].filter((item, i) => i === index);
+        const newArr = state.info[section].filter((item, i) => i !== index);
+        newArr.splice(index + 1, 0, ...itemToMove);
+
+        console.log(newArr);
+
+        const resultObject = {};
+        resultObject.info = { ...state.info };
+        resultObject.info[section] = newArr;
+
+        return resultObject;
+      });
+    }
   };
 
   submitForm = () => {
