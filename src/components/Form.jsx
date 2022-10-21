@@ -7,15 +7,15 @@ const sectionTemplate = {
   experience: 'Experience',
 };
 
-class Form extends React.Component {
-  generateFormFields = (info, section) => {
+function Form(props) {
+  const generateFormFields = (info, section) => {
     // Get array of generalInfo keys
     const {
       handleChange,
       removeFromSection,
       moveUpInSection,
       moveDownInSection,
-    } = this.props;
+    } = props;
 
     return info.map((item, index) => {
       const infoKeys = Object.keys(item);
@@ -117,8 +117,8 @@ class Form extends React.Component {
   };
 
   // Allows
-  generateAddBtn = (section) => {
-    const { addToSection } = this.props;
+  const generateAddBtn = function (section) {
+    const { addToSection } = props;
     if (section === 'education' || section === 'experience') {
       return (
         <div className="btnGroup">
@@ -136,45 +136,43 @@ class Form extends React.Component {
     return '';
   };
 
-  onFormSubmit = (e) => {
-    const { handleSubmission } = this.props;
+  const onFormSubmit = (e) => {
+    const { handleSubmission } = props;
     e.preventDefault();
     handleSubmission();
   };
 
-  render() {
-    const { info, handleClear, handleReset } = this.props; // Get state
-    const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
-    return (
-      <form onSubmit={this.onFormSubmit}>
-        {sections.map((section) => (
-          <div key={section}>
-            <fieldset className={section}>
-              <legend>{sectionTemplate[section]}</legend>
-              <div>
-                {this.generateFormFields(info[section], section)}
-                {this.generateAddBtn(section)}
-              </div>
-            </fieldset>
-          </div>
-        ))}
-
-        <div className="btnGroup">
-          <button type="submit" className="submit">
-            Export Form (PDF)
-          </button>
-          <div>
-            <button type="button" className="reset" onClick={handleReset}>
-              Reset Form
-            </button>
-            <button type="button" className="clear" onClick={handleClear}>
-              Clear Form
-            </button>
-          </div>
+  const { info, handleClear, handleReset } = props; // Get state
+  const sections = Object.keys(info); // Get sections (general, education, experience, etc...)
+  return (
+    <form onSubmit={onFormSubmit}>
+      {sections.map((section) => (
+        <div key={section}>
+          <fieldset className={section}>
+            <legend>{sectionTemplate[section]}</legend>
+            <div>
+              {generateFormFields(info[section], section)}
+              {generateAddBtn(section)}
+            </div>
+          </fieldset>
         </div>
-      </form>
-    );
-  }
+      ))}
+
+      <div className="btnGroup">
+        <button type="submit" className="submit">
+          Export Form (PDF)
+        </button>
+        <div>
+          <button type="button" className="reset" onClick={handleReset}>
+            Reset Form
+          </button>
+          <button type="button" className="clear" onClick={handleClear}>
+            Clear Form
+          </button>
+        </div>
+      </div>
+    </form>
+  );
 }
 
 export default Form;
