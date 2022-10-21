@@ -137,15 +137,11 @@ function App() {
   };
 
   const submitForm = () => {
-    this.setState({
-      isFormSubmitted: true,
-    });
+    setIsFormSubmitted(true);
   };
 
   const backToEditMode = () => {
-    this.setState({
-      isFormSubmitted: false,
-    });
+    setIsFormSubmitted(false);
   };
 
   const handleClear = async () => {
