@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import Swal from 'sweetalert2';
 import ReactToPrint from 'react-to-print';
@@ -190,6 +190,9 @@ function App() {
       setInfo(initialInfo);
     }
   };
+
+  const componentRef = useRef();
+
   return (
     <div className="App">
       <nav>
@@ -217,32 +220,20 @@ function App() {
           <CV info={info} />
         </div>
       ) : (
-        ''
-      )}
-      {/* ) : (
         <div className="printPage">
           <div className="printGroup">
             <ReactToPrint
               trigger={generatePrintBtn}
-              content={() => this.componentRef}
+              content={() => componentRef.current}
             />
-            <button
-              type="button"
-              className="edit"
-              onClick={this.backToEditMode}
-            >
+            <button type="button" className="edit" onClick={backToEditMode}>
               Back to Edit
             </button>
           </div>
 
-          <CV
-            info={info}
-            ref={(el) => {
-              this.componentRef = el;
-            }}
-          />
+          <CV info={info} ref={componentRef} />
         </div>
-      )} */}
+      )}
     </div>
   );
 }
