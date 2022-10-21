@@ -99,50 +99,40 @@ function App() {
   };
 
   const moveUpInSection = (e, index, section) => {
-    const { info } = this.state;
     const { length } = info[section];
 
     // Section must have at least two items, item should not be the first one
     if (length > 1 && index !== 0) {
-      this.setState((state) => {
-        // Get item to move (as array with 1 element)
-        const itemToMove = state.info[section].filter((item, i) => i === index);
-        // Get new array without that item
-        const newArr = state.info[section].filter((item, i) => i !== index);
-        // Mutate new array with the MOVED UP item (index - 1)
-        newArr.splice(index - 1, 0, ...itemToMove);
+      // Get item to move (as array with 1 element)
+      const itemToMove = info[section].filter((item, i) => i === index);
+      // Get new array without that item
+      const newArr = info[section].filter((item, i) => i !== index);
+      // Mutate new array with the MOVED UP item (index - 1)
+      newArr.splice(index - 1, 0, ...itemToMove);
 
-        // Prepare and return the resulting info state obj
-        const resultObject = {};
-        resultObject.info = { ...state.info };
-        resultObject.info[section] = newArr;
+      const result = { ...info }; // Fetch old values
+      result[section] = newArr;
 
-        return resultObject;
-      });
+      setInfo(result);
     }
   };
 
   const moveDownInSection = (e, index, section) => {
-    const { info } = this.state;
     const { length } = info[section];
 
     // Section must have at least two items, item should not be the last one
     if (length > 1 && index < length - 1) {
-      this.setState((state) => {
-        // Get item to move
-        const itemToMove = state.info[section].filter((item, i) => i === index);
-        // Get new array without that item
-        const newArr = state.info[section].filter((item, i) => i !== index);
-        // Mutate new array with the MOVED DOWN item (index + 1)
-        newArr.splice(index + 1, 0, ...itemToMove);
+      // Get item to move
+      const itemToMove = info[section].filter((item, i) => i === index);
+      // Get new array without that item
+      const newArr = info[section].filter((item, i) => i !== index);
+      // Mutate new array with the MOVED DOWN item (index + 1)
+      newArr.splice(index + 1, 0, ...itemToMove);
 
-        // Prepare and return the resulting info state obj
-        const resultObject = {};
-        resultObject.info = { ...state.info };
-        resultObject.info[section] = newArr;
+      const result = { ...info }; // Fetch old values
+      result[section] = newArr;
 
-        return resultObject;
-      });
+      setInfo(result);
     }
   };
 
