@@ -156,22 +156,20 @@ function App() {
       confirmButtonText: 'Yes, clear it!',
     });
     if (result.isConfirmed) {
-      this.setState({
-        info: {
-          general: [
-            {
-              firstName: '',
-              lastName: '',
-              title: '',
-              email: '',
-              phone: '',
-              summary: '',
-              id: nanoid(),
-            },
-          ],
-          education: [],
-          experience: [],
-        },
+      setInfo({
+        general: [
+          {
+            firstName: '',
+            lastName: '',
+            title: '',
+            email: '',
+            phone: '',
+            summary: '',
+            id: nanoid(),
+          },
+        ],
+        education: [],
+        experience: [],
       });
     }
   };
@@ -189,9 +187,7 @@ function App() {
       confirmButtonText: 'Yes, reset it!',
     });
     if (result.isConfirmed) {
-      this.setState({
-        info: initialInfo,
-      });
+      setInfo(initialInfo);
     }
   };
   return (
