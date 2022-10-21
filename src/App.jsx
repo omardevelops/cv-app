@@ -48,41 +48,26 @@ function App() {
     result[section] = newArr;
 
     setInfo(result);
-
-    // this.setState((state) => {
-    //   const newArr = [...state.info[section]]; // Get old entries and values
-    //   newArr[index][key] = e.target.value; // Set new value
-
-    //   const resultObject = {};
-    //   resultObject.info = { ...state.info };
-    //   resultObject.info[section] = newArr;
-
-    //   return resultObject;
-    // });
   };
 
   // Adds a new entry to an input section [education, experience, etc...]
   const addToSection = (e, section) => {
-    this.setState((state) => {
-      const newEntry = { id: nanoid() }; // Create a new entry with its unique ID
-      this.keys[section].forEach((key) => {
-        // Add the entry's form fields
-        newEntry[key] = '';
-      });
-      const newArr = state.info[section].concat(newEntry);
-
-      const resultObject = {}; // Setup the new state object
-      resultObject.info = { ...state.info }; // Fetch old values
-      resultObject.info[section] = newArr;
-
-      return resultObject;
+    const newEntry = { id: nanoid() }; // Create a new entry with its unique ID
+    keys[section].forEach((key) => {
+      // Add the entry's form fields
+      newEntry[key] = '';
     });
+    const newArr = info[section].concat(newEntry);
+
+    const result = { ...info }; // Fetch old values
+    result[section] = newArr;
+
+    setInfo(result);
   };
 
   // This function removes an entry from an input section [education, experience, etc...]
   // The entry's unique ID must be provided as an input
   const removeFromSection = async (e, section, index, id) => {
-    const { info } = this.state;
     const entryToRemove = info[section][index];
     let msg = '';
     if (section === 'education') {
@@ -91,7 +76,7 @@ function App() {
       msg = `Title: ${entryToRemove.positionTitle}<br>Company: ${entryToRemove.companyName}`;
     }
 
-    const result = await Swal.fire({
+    const prompt = await Swal.fire({
       title: `Removing ${
         section[0].toUpperCase() + section.slice(1, section.length)
       } Entry #${index + 1}\n Are you sure?`,
@@ -103,16 +88,23 @@ function App() {
       cancelButtonColor: '#3085d6',
       confirmButtonText: 'Yes, clear it!',
     });
-    if (result.isConfirmed) {
-      this.setState((state) => {
-        const newArr = state.info[section].filter((entry) => entry.id !== id);
+    if (prompt.isConfirmed) {
+      const newArr = info[section].filter((entry) => entry.id !== id);
 
-        const resultObject = {};
-        resultObject.info = { ...state.info };
-        resultObject.info[section] = newArr;
+      const result = { ...info }; // Fetch old values
+      result[section] = newArr;
 
-        return resultObject;
-      });
+      setInfo(result);
+
+      // this.setState((state) => {
+      //   const newArr = state.info[section].filter((entry) => entry.id !== id);
+
+      //   const resultObject = {};
+      //   resultObject.info = { ...state.info };
+      //   resultObject.info[section] = newArr;
+
+      //   return resultObject;
+      // });
     }
   };
 
