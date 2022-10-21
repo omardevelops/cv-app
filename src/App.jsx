@@ -95,16 +95,6 @@ function App() {
       result[section] = newArr;
 
       setInfo(result);
-
-      // this.setState((state) => {
-      //   const newArr = state.info[section].filter((entry) => entry.id !== id);
-
-      //   const resultObject = {};
-      //   resultObject.info = { ...state.info };
-      //   resultObject.info[section] = newArr;
-
-      //   return resultObject;
-      // });
     }
   };
 
